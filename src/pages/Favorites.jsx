@@ -66,9 +66,8 @@ function Favorites() {
                     <div className="error-message">
                         <p>{error}</p>
                         <p>
-                            Lưu ý: Tính năng yêu thích cần có Appwrite
-                            Collection ID hợp lệ. Vui lòng kiểm tra cấu hình
-                            Appwrite.
+                            Lưu ý: Tính năng yêu thích hiện đang không hoạt
+                            động, vui lòng thử lại sau!.
                         </p>
                     </div>
                 )}
