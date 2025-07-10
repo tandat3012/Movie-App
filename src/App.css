@@ -1,0 +1,75 @@
+/* 
+ * App.css - Global utility and accessibility styles only
+ * Most styles have been moved to modular structure in src/styles/
+ */
+
+/* Global accessibility styles */
+html {
+    scroll-behavior: smooth;
+}
+
+*:focus {
+    outline: 2px solid #e50914;
+    outline-offset: 2px;
+}
+
+/* Animation utilities */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .movie-card,
+    .filter-select,
+    .pagination-button,
+    .pagination-number {
+        border-color: #ffffff !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navigation,
+    .filters,
+    .pagination,
+    .action-buttons {
+        display: none !important;
+    }
+    .movie-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

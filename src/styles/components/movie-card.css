@@ -1,0 +1,105 @@
+/* MovieCard Component Styles */
+.movie-card {
+    background: #0f0d23;
+    padding: 1.25rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: inset 0 2px 4px rgba(206, 206, 251, 0.1);
+    transition: transform var(--transition-normal);
+}
+
+.movie-card:hover {
+    transform: translateY(-4px);
+}
+
+.movie-card img {
+    border-radius: var(--border-radius-md);
+    height: auto;
+    width: 100%;
+}
+
+.movie-card h3 {
+    color: var(--color-text-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-clamp: 1;
+    margin-top: 1rem;
+}
+
+.movie-card .content {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.movie-card .rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.movie-card .rating img {
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+}
+
+.movie-card .rating p {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+}
+
+.movie-card .content span {
+    font-size: 0.875rem;
+    color: rgb(156, 164, 171);
+}
+
+.movie-card .content .lang {
+    text-transform: capitalize;
+    color: rgb(156, 164, 171);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.movie-card .content .year {
+    color: rgb(156, 164, 171);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Movie Grid */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .movie-card {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+    }
+}

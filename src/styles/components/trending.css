@@ -1,0 +1,116 @@
+/* Trending styles */
+.trending {
+    margin-top: 5rem;
+}
+
+.trending h2 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.trending ul {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    max-width: 100%;
+    padding: 0;
+    justify-items: center;
+}
+
+.trending li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    align-items: center;
+    position: relative;
+    justify-self: center;
+}
+
+.trending li p {
+    -webkit-text-stroke: 5px rgba(206, 206, 251, 0.5);
+    font-size: 190px;
+    font-family: 'Bebas Neue', cursive;
+    margin-top: 1.375rem;
+    white-space: nowrap;
+    position: absolute;
+    top: -5rem;
+    left: -5rem;
+    z-index: 1;
+    color: transparent;
+    pointer-events: none;
+}
+
+.trending li img {
+    width: clamp(100px, 12vw, 127px);
+    aspect-ratio: 127 / 163;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    margin-left: -0.875rem;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.trending li:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive styles for trending */
+@media (max-width: 1024px) {
+    .trending ul {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+
+    .trending li p {
+        font-size: 150px;
+        top: -1.8rem;
+        left: -0.8rem;
+    }
+
+    .trending li img {
+        width: 115px;
+        height: 150px;
+        margin-left: -0.7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .trending ul {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .trending li p {
+        font-size: 120px;
+        top: -1.5rem;
+        left: -0.5rem;
+    }
+
+    .trending li img {
+        width: 100px;
+        height: 130px;
+        margin-left: -0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .trending ul {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .trending li p {
+        font-size: 80px;
+        top: -1rem;
+        left: -0.25rem;
+    }
+
+    .trending li img {
+        width: 80px;
+        height: 110px;
+        margin-left: -0.5rem;
+    }
+}

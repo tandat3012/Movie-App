@@ -1,0 +1,64 @@
+/* Search Component Styles */
+.search {
+    width: 100%;
+    background: rgba(206, 206, 251, 0.05);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 2.5rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search div {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search img {
+    position: absolute;
+    left: 0.5rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    z-index: 2;
+}
+
+.search input {
+    width: 100%;
+    background: transparent;
+    padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+    font-size: 1rem;
+    color: rgb(229, 229, 229);
+    border: none;
+    outline: none;
+}
+
+.search input::placeholder {
+    color: rgb(164, 181, 219);
+}
+
+@media (min-width: 640px) {
+    .search input {
+        padding-right: 2.5rem;
+    }
+}
+
+/* Responsive for xs screens */
+@media (min-width: 480px) {
+    .wrapper {
+        padding: 2.5rem;
+    }
+
+    header h1 {
+        font-size: 4rem;
+        line-height: 1.2;
+    }
+}
+
+.search-container {
+    margin-top: 2.5rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+}

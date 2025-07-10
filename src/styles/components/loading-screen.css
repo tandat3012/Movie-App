@@ -1,0 +1,106 @@
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-background);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-screen.exit {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-screen.exit .loading-content {
+    transform: translateY(-20px);
+}
+
+.loading-title {
+    background: linear-gradient(90deg, #ff6b6b, #1e90ff, #ff6b6b);
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+
+    width: 0;
+    animation: typing 2s steps(31, end) forwards, blink 0.7s step-end infinite,
+        gradient-move 3s linear infinite;
+}
+
+.loading-logo {
+    width: 80px;
+    height: 80px;
+
+    margin-bottom: 1rem;
+    filter: invert(29%) sepia(77%) saturate(1654%) hue-rotate(213deg)
+        brightness(99%) contrast(91%) hue-rotate(359deg) brightness(93%)
+        contrast(114%);
+    animation: loading_logo 2.5s infinite ease-in-out;
+}
+
+.loading-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes loading_logo {
+    0% {
+        transform: scale(3.5);
+    }
+    50% {
+        transform: scale(3);
+    }
+    100% {
+        transform: scale(3.5);
+    }
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: -200% center;
+    }
+}
+
+@keyframes blink_text {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 24ch;
+    }
+}

@@ -1,0 +1,7 @@
+/* 
+ * Main entry point for all styles
+ * Modular CSS architecture - all specific styles are in src/styles/
+ */
+
+/* Import modular styles */
+@import './styles/index.css';

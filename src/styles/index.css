@@ -1,0 +1,21 @@
+/* Main Styles Entry Point */
+
+/* Variables and Base Styles */
+@import './variables.css';
+@import './base.css';
+@import './utilities.css';
+
+/* Component Styles */
+@import './components/navigation.css';
+@import './components/search.css';
+@import './components/trending.css';
+@import './components/movie-card.css';
+@import './components/loading-spinner.css';
+@import './components/loading-screen.css';
+@import './components/pagination.css';
+@import './components/filters.css';
+
+/* Page Styles */
+@import './pages/home.css';
+@import './pages/movie-detail.css';
+@import './pages/favorites.css';

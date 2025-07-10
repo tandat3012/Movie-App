@@ -1,0 +1,239 @@
+
+.favorites-page {
+    min-height: 100vh;
+    padding: 2rem 0;
+    padding-top: calc(70px + 2rem); 
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 0 1rem 2rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.page-icon {
+    color: var(--color-primary);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.page-header p {
+    color: var(--color-text-secondary);
+}
+
+.back-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-normal);
+}
+
+.back-link:hover {
+    color: var(--color-text-primary);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-icon {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+}
+
+.empty-state p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    transition: background var(--transition-normal);
+}
+
+.cta-button:hover {
+    background: var(--color-primary-dark);
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+}
+
+.favorite-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+}
+
+.favorite-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.favorite-card .movie-link {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.favorite-card .movie-poster {
+    width: 80px;
+    flex-shrink: 0;
+    aspect-ratio: 2/3;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+}
+
+.favorite-card .movie-info {
+    flex: 1;
+    padding: 0;
+}
+
+.favorite-card .movie-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.favorite-card .rating {
+    margin-bottom: 0.5rem;
+}
+
+.favorite-card .release-year {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.favorite-card .overview {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+}
+
+.remove-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(229, 9, 20, 0.2);
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.remove-button:hover {
+    background: var(--color-primary);
+    color: var(--color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .favorites-page {
+        padding: 1rem 0;
+        padding-top: calc(56px + 1rem); /* Mobile navigation height + spacing */
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 0 1rem 1.5rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .header-content {
+        width: 100%;
+    }
+
+    .back-link {
+        align-self: flex-end;
+    }
+
+    .page-icon {
+        font-size: 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+
+    .empty-state h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .favorites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .favorite-card .movie-link {
+        padding: 0.75rem;
+    }
+
+    .favorite-card .movie-poster {
+        width: 70px;
+    }
+
+    .favorite-card .movie-info h3 {
+        font-size: 1rem;
+    }
+
+    .remove-button {
+        width: 32px;
+        height: 32px;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+}

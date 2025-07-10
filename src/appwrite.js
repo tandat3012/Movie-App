@@ -1,0 +1,150 @@
+import { Client, Databases, ID, Query } from 'appwrite';
+
+const PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID;
+const COLLECTION_ID = import.meta.env.VITE_APPWRITE_COLLECTION_ID;
+const FAVORITES_COLLECTION_ID =
+    import.meta.env.VITE_APPWRITE_FAVORITES_COLLECTION_ID || 'favorites';
+const DB_ID = import.meta.env.VITE_APPWRITE_DB_ID;
+
+const client = new Client()
+    .setEndpoint('https://cloud.appwrite.io/v1')
+    .setProject(PROJECT_ID);
+
+const database = new Databases(client);
+
+export const updateSearchCount = async (searchTerm, movie) => {
+    try {
+        const result = await database.listDocuments(DB_ID, COLLECTION_ID, [
+            Query.equal('searchTerm', searchTerm),
+        ]);
+
+        if (result.documents.length > 0) {
+            const doc = result.documents[0];
+            await database.updateDocument(DB_ID, COLLECTION_ID, doc.$id, {
+                count: doc.count + 1,
+            });
+            console.log(result);
+        } else {
+            await database.createDocument(DB_ID, COLLECTION_ID, ID.unique(), {
+                searchTerm,
+                count: 1,
+                movie_id: movie.id,
+                poster_URL: `https://image.tmdb.org/t/p/w500${movie.poster_path} `,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const getTrendingMovies = async () => {
+    try {
+        const result = await database.listDocuments(DB_ID, COLLECTION_ID, [
+            Query.limit(5),
+            Query.orderDesc('count'),
+        ]);
+
+        return result.documents;
+    } catch (err) {
+        console.error(err);
+        return [];
+    }
+};
+
+// Favorites functions
+export const getFavorites = async () => {
+    try {
+        const result = await database.listDocuments(
+            DB_ID,
+            FAVORITES_COLLECTION_ID,
+        );
+        return result.documents;
+    } catch (error) {
+        console.error('Error fetching favorites:', error);
+        return [];
+    }
+};
+
+export const addToFavorites = async (movie) => {
+    try {
+        const movieId = movie.id.toString();
+        console.log('Adding to favorites:', movie);
+
+        // Check if movie already exists in favorites
+        const existing = await database.listDocuments(
+            DB_ID,
+            FAVORITES_COLLECTION_ID,
+            [Query.equal('movie_id', movieId)],
+        );
+
+        if (existing.documents.length > 0) {
+            console.log('Movie already in favorites');
+            return existing.documents[0]; // Already in favorites
+        }
+
+        console.log('Creating new favorite document');
+        const result = await database.createDocument(
+            DB_ID,
+            FAVORITES_COLLECTION_ID,
+            ID.unique(),
+            {
+                movie_id: movieId,
+                title: movie.title,
+                poster_URL: movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : null,
+                vote_average: movie.vote_average || 0,
+                release_date: movie.release_date || '',
+                overview: movie.overview || '',
+                created_at: new Date().toISOString(),
+            },
+        );
+
+        console.log('Favorite added successfully:', result);
+        return result;
+    } catch (error) {
+        console.error('Error adding to favorites:', error);
+        throw error;
+    }
+};
+
+export const removeFromFavorites = async (movieId) => {
+    try {
+        const existing = await database.listDocuments(
+            DB_ID,
+            FAVORITES_COLLECTION_ID,
+            [Query.equal('movie_id', movieId.toString())],
+        );
+
+        if (existing.documents.length > 0) {
+            await database.deleteDocument(
+                DB_ID,
+                FAVORITES_COLLECTION_ID,
+                existing.documents[0].$id,
+            );
+            return true;
+        }
+
+        return false;
+    } catch (error) {
+        console.error('Error removing from favorites:', error);
+        throw error;
+    }
+};
+
+export const isFavorite = async (movieId) => {
+    try {
+        console.log('Checking if movie is favorite:', movieId);
+        const existing = await database.listDocuments(
+            DB_ID,
+            FAVORITES_COLLECTION_ID,
+            [Query.equal('movie_id', movieId.toString())],
+        );
+
+        console.log('Favorite check result:', existing.documents.length > 0);
+        return existing.documents.length > 0;
+    } catch (error) {
+        console.error('Error checking if movie is favorite:', error);
+        return false;
+    }
+};
