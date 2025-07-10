@@ -101,7 +101,7 @@ function MovieDetail() {
         } catch (err) {
             console.error('Error updating favorites:', err);
             alert(
-                'Có lỗi khi cập nhật danh sách yêu thích. Vui lòng đảm bảo Appwrite được cấu hình đúng với collection ID hợp lệ.',
+                'Có lỗi khi cập nhật danh sách yêu thích. Vui lòng thử lại sau.!',
             );
         }
     };
